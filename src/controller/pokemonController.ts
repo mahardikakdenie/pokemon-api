@@ -8,8 +8,15 @@ export const getPokemons = async (req: ExpressRequest, res: Response) => {
     let cachedPokemonList: any[] | null = null; // Cache untuk menyimpan data Pokémon
 
     try {
-        cachedPokemonList = await getPokemonService(limitNumber, offsetNumber); // Ambil data Pokémon dari cache atau API
-       res.status(200).json(cachedPokemonList); 
+        cachedPokemonList = await getPokemonService(limitNumber, offsetNumber);
+        const result = {
+          meta: {
+            totalData: cachedPokemonList.length,
+          },
+          data: cachedPokemonList,
+        };
+         // Ambil data Pokémon dari cache atau API
+       res.status(200).json(result); 
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch Pokémon data' });
     }
