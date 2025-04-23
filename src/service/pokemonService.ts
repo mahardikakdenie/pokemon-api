@@ -3,7 +3,6 @@ import axios from "axios";
 export const getPokemonService = async (limit: number, offset: number) => {
     let cachedPokemonList: any[] | null = null; // Cache untuk menyimpan data Pokémon
     try {
-        // Gunakan cache jika sudah ada
         if (cachedPokemonList) {
             return cachedPokemonList;
         }
@@ -26,10 +25,7 @@ export const getPokemonService = async (limit: number, offset: number) => {
           })
         );
     
-        // Simpan ke cache
         cachedPokemonList = detailedPokemonList;
-    
-        // res.json(detailedPokemonList);
       } catch (err) {
         console.error("Error fetching Pokémon data:", err);
         throw new Error("Failed to fetch Pokémon data");
