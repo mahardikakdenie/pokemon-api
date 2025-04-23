@@ -18,6 +18,7 @@ export const getPokemonService = async (limit: number, offset: number) => {
             const data = detailRes.data;
     
             return {
+              id: data.id,
               name: data.name,
               image: data.sprites.other['official-artwork'].front_default,
               abilities: data.abilities.map((ab: any) => ab.ability.name),
