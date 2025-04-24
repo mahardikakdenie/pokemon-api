@@ -3,9 +3,9 @@ import { getPokemonService } from '../service/pokemonService';
 
 export const getPokemons = async (req: ExpressRequest, res: Response) => {
   const { limit, offset } = req.query;
-    const limitNumber = Number(limit) || 10; // Default limit to 10 if not provided
-    const offsetNumber = Number(offset) || 0; // Default offset to 0 if not provided
-    let cachedPokemonList: any[] | null = null; // Cache untuk menyimpan data Pokémon
+    const limitNumber = Number(limit) || 10;
+    const offsetNumber = Number(offset) || 0;
+    let cachedPokemonList: any[] | null = null;
 
     try {
         cachedPokemonList = await getPokemonService(limitNumber, offsetNumber);
